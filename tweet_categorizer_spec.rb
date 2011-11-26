@@ -21,6 +21,7 @@ describe TweetCategorizer do
   context "reply" do
     subject { @tc.categorize "Alice\t@Bob 私もよ。" }
     it { should_not =~ /^Normal/ }
+    it { should == "Reply\t@Bob 私もよ。" }
   end
   context "Hash tag" do
     subject { @tc.categorize "Alice\t私もですよ。#metoo" }
