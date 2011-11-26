@@ -12,5 +12,10 @@ describe TweetCategorizer do
     subject { @tc.categorize "Alice\tあいうえお" }
     it { should == "Normal\tあいうえお" }
   end
+  context "Bob\tでも僕はTwitterなんて全然わからないよ。" do
+    before { @tc = TweetCategorizer.new }
+    subject { @tc.categorize "Bob\tでも僕はTwitterなんて全然わからないよ。" }
+    it { should == "Normal\tでも僕はTwitterなんて全然わからないよ。" }
+  end
 end
 

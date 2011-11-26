@@ -2,6 +2,7 @@
 
 class TweetCategorizer
   def categorize(tweet)
-    "Normal\tあいうえお"
+    body = tweet.split("\t")[1]
+    "Normal\t#{body}"
   end
 end
