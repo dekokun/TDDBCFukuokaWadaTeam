@@ -8,31 +8,32 @@ require File.expand_path(
 
 describe TweetCategorizer do
   before { @tc = TweetCategorizer.new }
+  subject { @tc.categorize tweet }
   context "Normalの場合" do
     context "Alice\tあいうえお" do
-      subject { @tc.categorize "Alice\tあいうえお" }
+      let(:tweet) { "Alice\tあいうえお" }
       it { should == "Normal\tあいうえお" }
     end
     context "Bob\tでも僕はTwitterなんて全然わからないよ。" do
-      subject { @tc.categorize "Bob\tでも僕はTwitterなんて全然わからないよ。" }
+      let(:tweet) { "Bob\tでも僕はTwitterなんて全然わからないよ。" }
       it { should == "Normal\tでも僕はTwitterなんて全然わからないよ。" }
     end
   end
   context "reply" do
-    subject { @tc.categorize "Alice\t@Bob 私もよ。" }
+    let(:tweet) { "Alice\t@Bob 私もよ。" }
     it { should_not =~ /^Normal/ }
     it { should == "Reply\t@Bob 私もよ。" }
   end
   context "@の後に何もない" do
-    subject { @tc.categorize "Alice\t@" }
+    let(:tweet) { "Alice\t@" }
     it { should == "Normal\t@" }
   end
   context "Hash tag" do
-    subject { @tc.categorize "Alice\t私もですよ。#metoo" }
+    let(:tweet) { "Alice\t私もですよ。#metoo" }
     it { should == "!HashTag\t私もですよ。#metoo" }
   end
   context "Mention" do
-    subject { @tc.categorize "Alice\t私もですよ。@Bob" }
+    let(:tweet) { "Alice\t私もですよ。@Bob" }
     it { should == "Mention\t私もですよ。@Bob" }
   end
 end
