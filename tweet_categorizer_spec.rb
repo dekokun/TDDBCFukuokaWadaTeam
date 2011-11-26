@@ -7,8 +7,10 @@ require File.expand_path(
       'tweet_categorizer'))
 
 describe TweetCategorizer do
-  before { @tc = TweetCategorizer.new }
-  subject { @tc.categorize "Alice\tあいうえお" }
-  it { should == "Normal\tあいうえお" }
+  context "Alice\tあいうえお" do
+    before { @tc = TweetCategorizer.new }
+    subject { @tc.categorize "Alice\tあいうえお" }
+    it { should == "Normal\tあいうえお" }
+  end
 end
 
