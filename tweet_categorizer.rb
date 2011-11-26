@@ -6,7 +6,7 @@ class TweetCategorizer
     case body
     when /#.+/
       "!HashTag\t#{body}"
-    when /^@/
+    when /^@.+/
       "Reply\t#{body}"
     when /@.+/
       "Mention\t#{body}"
