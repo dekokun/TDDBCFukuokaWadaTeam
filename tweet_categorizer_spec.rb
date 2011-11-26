@@ -16,5 +16,9 @@ describe TweetCategorizer do
     subject { @tc.categorize "Bob\tでも僕はTwitterなんて全然わからないよ。" }
     it { should == "Normal\tでも僕はTwitterなんて全然わからないよ。" }
   end
+  context "reply" do
+    subject { @tc.categorize "Alice\t@Bob 私もよ。" }
+    it { should_not =~ /^Normal/ }
+  end
 end
 
