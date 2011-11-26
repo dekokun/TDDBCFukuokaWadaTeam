@@ -27,5 +27,9 @@ describe TweetCategorizer do
     subject { @tc.categorize "Alice\t私もですよ。#metoo" }
     it { should == "!HashTag\t私もですよ。#metoo" }
   end
+  context "Mention" do
+    subject { @tc.categorize "Alice\t私もですよ。@Bob" }
+    it { should == "Mention\t私もですよ。@Bob" }
+  end
 end
 

@@ -8,6 +8,8 @@ class TweetCategorizer
       "!HashTag\t#{body}"
     when /^@/
       "Reply\t#{body}"
+    when /@.+/
+      "Mention\t#{body}"
     else
       "Normal\t#{body}"
     end
