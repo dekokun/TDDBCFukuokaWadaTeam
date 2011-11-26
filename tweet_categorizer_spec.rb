@@ -8,13 +8,15 @@ require File.expand_path(
 
 describe TweetCategorizer do
   before { @tc = TweetCategorizer.new }
-  context "Alice\tあいうえお" do
-    subject { @tc.categorize "Alice\tあいうえお" }
-    it { should == "Normal\tあいうえお" }
-  end
-  context "Bob\tでも僕はTwitterなんて全然わからないよ。" do
-    subject { @tc.categorize "Bob\tでも僕はTwitterなんて全然わからないよ。" }
-    it { should == "Normal\tでも僕はTwitterなんて全然わからないよ。" }
+  context "Normalの場合" do
+    context "Alice\tあいうえお" do
+      subject { @tc.categorize "Alice\tあいうえお" }
+      it { should == "Normal\tあいうえお" }
+    end
+    context "Bob\tでも僕はTwitterなんて全然わからないよ。" do
+      subject { @tc.categorize "Bob\tでも僕はTwitterなんて全然わからないよ。" }
+      it { should == "Normal\tでも僕はTwitterなんて全然わからないよ。" }
+    end
   end
   context "reply" do
     subject { @tc.categorize "Alice\t@Bob 私もよ。" }
