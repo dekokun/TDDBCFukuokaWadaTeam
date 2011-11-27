@@ -2,9 +2,7 @@
 
 class TweetCategorizer
   def categorize(tweet)
-    parts = tweet.split("\t")
-    parts.shift
-    body = parts.join("\t")
+    body = tweet.sub(/^.+?\t/, '')
     categories = []
 
     category_conditions.each do |k, v|
