@@ -40,7 +40,7 @@ describe TweetCategorizer do
   end
   context "Hash tag and Reply" do
     let(:tweet) { "Alice\t@Bob #Hello こんにちは" }
-    it { should == "!Hashtag,Reply\t@Bob #Hello こんにちは" }
+    it { should == "!HashTag,Reply\t@Bob #Hello こんにちは" }
   end
 end
 

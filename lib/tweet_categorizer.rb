@@ -6,7 +6,7 @@ class TweetCategorizer
     categories = []
     categories << "!HashTag" if body =~ /#.+/
     categories << "Reply" if body =~ /^@.+/
-    categories << "Mention" if body =~ /@.+/
+    categories << "Mention" if body =~ /^[^@]+@.+/
     if categories.empty?
       categories << "Normal"
     end
