@@ -21,6 +21,12 @@ describe TweetCategorizer do
       it { should == "Normal\tでも僕はTwitterなんて全然わからないよ。" }
     end
   end
+  context "本文にタブが含まれている場合" do
+    context "Alice\tあい\tうえお" do
+      let(:tweet) { "Alice\tあい\tうえお" }
+      it { should == "Normal\tあい\tうえお" }
+    end
+  end
   context "reply" do
     let(:tweet) { "Alice\t@Bob 私もよ。" }
     it { should_not =~ /^Normal/ }
