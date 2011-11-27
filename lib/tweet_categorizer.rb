@@ -5,7 +5,7 @@ class TweetCategorizer
     body = tweet.sub(/^.+?\t/, '')
     categories = []
 
-    category_conditions.each do |k, v|
+    CATEGORY_CONDITIONS.each do |k, v|
       categories << k if body =~ v
     end
     categories << "Normal" if categories.empty?
@@ -13,11 +13,10 @@ class TweetCategorizer
     "#{categories.join(',')}\t#{body}"
   end
 
-  def category_conditions
+  CATEGORY_CONDITIONS = 
     {
       "!HashTag" => /#.+/,
       "Reply" => /^@.+/,
       "Mention" => /^[^@]+@.+/
-    }
-  end
+    }.freeze
 end
