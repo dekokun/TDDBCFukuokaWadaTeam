@@ -4,12 +4,20 @@ class TweetCategorizer
   def categorize(tweet)
     body = tweet.split("\t")[1]
     categories = []
-    categories << "!HashTag" if body =~ /#.+/
-    categories << "Reply" if body =~ /^@.+/
-    categories << "Mention" if body =~ /^[^@]+@.+/
-    if categories.empty?
-      categories << "Normal"
+
+    category_conditions.each do |k, v|
+      categories << k if body =~ v
     end
+    categories << "Normal" if categories.empty?
+
     "#{categories.join(',')}\t#{body}"
+  end
+
+  def category_conditions
+    {
+      "!HashTag" => /#.+/,
+      "Reply" => /^@.+/,
+      "Mention" => /^[^@]+@.+/
+    }
   end
 end
