@@ -4,6 +4,8 @@ require 'rubygems'
 require 'rspec'
 require File.expand_path(
   File.join(File.dirname(__FILE__),
+      '..',
+      'lib',
       'tweet_categorizer'))
 
 describe TweetCategorizer do
@@ -35,6 +37,10 @@ describe TweetCategorizer do
   context "Mention" do
     let(:tweet) { "Alice\t私もですよ。@Bob" }
     it { should == "Mention\t私もですよ。@Bob" }
+  end
+  context "Hash tag and Reply" do
+    let(:tweet) { "Alice\t@Bob #Hello こんにちは" }
+    it { should == "!Hashtag,Reply\t@Bob #Hello こんにちは" }
   end
 end
 
